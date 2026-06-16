@@ -1,0 +1,51 @@
+# NISQ feasibility (Phase 6). Noisy/shot sim is 10-100x slower than analytic.
+
+# Run full grid on ONE representative config (= Phase-4 main). nisq.py actually
+# reads hparams from the saved main checkpoint; this mirrors it for documentation.
+# Kept in sync with the trained main checkpoint (build_reupload_head 8/3/circular).
+representative_config:
+  qubits: 8
+  depth: 3
+  entanglement: circular
+  encoding: reupload
+
+shots: [128, 512, 1024, 4096]
+
+noise_models:
+  depolarizing:
+    enabled: true
+    p: [0.001, 0.01, 0.05]
+  amplitude_damping:
+    enabled: true
+    gamma: [0.01, 0.05]
+  phase_damping:
+    enabled: true
+    gamma: [0.01, 0.05]
+  readout_error:
+    enabled: true
+    p01: 0.02
+    p10: 0.02
+
+# Reduced grid for the main table; footnote the rest.
+main_table_grid:
+  shots: [512, 4096]
+  noise: [depolarizing, readout_error]
+
+# Calibration-informed noise (pure PennyLane). Device-summary calibration mapped to
+# default.mixed channels per gate layer: amplitude damping from T1, phase damping
+# from T2, depolarizing from gate error, readout error on measurement. Defaults are
+# representative IBM superconducting values — replace with the target device's
+# published numbers and cite the source.
+calibration:
+  enabled: true
+  device: "ibm_typical"        # cite the calibration source in the manuscript
+  t1_us: 200.0                 # relaxation time
+  t2_us: 120.0                 # dephasing time
+  gate_time_1q_ns: 35.0
+  gate_time_2q_ns: 300.0       # ECR/CZ
+  gate_error_1q: 2.5e-4
+  gate_error_2q: 7.0e-3
+  readout_error: 1.2e-2
+
+backend: pennylane_default_mixed   # single framework; no Qiskit
+checkpoint_partial: true       # write partial CSV so a crash doesn't lose the run

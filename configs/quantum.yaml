@@ -1,0 +1,40 @@
+# Quantum head + ablation grid (Phase 4). Trains on precomputed frozen features.
+
+device: lightning.qubit       # CPU analytic statevector for training
+diff_method: adjoint          # fast analytic grads on lightning; parameter-shift for hardware
+
+head:
+  encoding: angle             # main; amplitude optional
+  ansatz: rx_ry_rz_cnot
+  readout: pauli_z
+
+# Ablation grid -> Table 2. Full grid 3x3x3 x 5 seeds ~= 135 runs.
+ablation:
+  qubits: [4, 6, 8]
+  depth: [1, 2, 4]
+  entanglement: [linear, circular, full]
+  encoding: [angle]           # add amplitude to extend
+
+train:
+  epochs: 40
+  batch_size: 32
+  lr: 0.01
+  optimizer: adam
+  joint: false                # --joint enables end-to-end backbone+head (slow)
+
+# Main Q-PlasmaNet config -> quantum_main.csv (rows of Table 3).
+# Data re-uploading head: 8 qubits, 3 re-upload layers, per-qubit Rot encoding
+# (ingests 3*8=24 features/upload) + trainable input scaling + <Z>,<ZZ> readout.
+# Research upgrade for F1 (Perez-Salinas 2020; Schuld 2021). depth = re-upload layers.
+main:
+  qubits: 8
+  depth: 3
+  entanglement: circular
+  encoding: reupload
+
+# Backbone whose frozen features feed the quantum head (chosen after Phase 3).
+# Winning main recipe: features from the PCMMD-TRAINED cnn backbone (not frozen
+# ImageNet). REQUIRES: precompute --from-classifier cnn  (plain precompute would
+# use a RANDOM cnn and give garbage features). Trained-cnn d24 retains ~0.997 var.
+feature_backbone: cnn
+feature_dims: [4, 6, 8, 24]   # angle: width=n_qubits; reupload main: width=3*qubits=24

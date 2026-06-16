@@ -1,0 +1,3 @@
+source,backend,n_cells,shots,f1,acc,auc
+hardware,ibm_marrakesh,100,1024,0.9091,0.91,0.9484
+statevector_sim,lightning.qubit,100,analytic,0.9109,0.91,0.9604

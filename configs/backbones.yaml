@@ -1,0 +1,32 @@
+# Classical backbones + heads (Phase 3). Frozen-backbone path is the default.
+
+backbones:
+  cnn:                        # custom small CNN
+    pretrained: false
+    feature_dim: 256
+  mobilen_v2:
+    name: mobilenet_v2
+    pretrained: true
+    feature_dim: 1280
+  resnet18:
+    name: resnet18
+    pretrained: true
+    feature_dim: 512
+  efficientnet_b0:
+    name: efficientnet_b0
+    pretrained: true
+    feature_dim: 1280
+
+heads:
+  mlp:                        # parameter-matched MLP — key fair comparator vs quantum head
+    hidden: [32, 16]
+    dropout: 0.1
+
+train:
+  epochs: 30
+  batch_size: 64
+  lr: 0.001
+  optimizer: adam
+  weight_decay: 0.0001
+  freeze_backbone: true       # default; --joint overrides
+  amp: true                   # GPU mixed precision

@@ -1,0 +1,4 @@
+subset,path,path_exists,n_images,n_plasma,n_non_plasma,n_unknown,n_patients,has_patient_ids,n_read_errors,img_w_min,img_w_max,img_h_min,img_h_max,most_common_wh,modes,mean_r,mean_g,mean_b,std_r,std_g,std_b
+labeled,/Users/shorna/Projects/Quantum Plasma Net/q-plasmanet/data/raw/pcmmd/labeled,True,3546,1615,1931,0,2,True,0,39,891,33,897,"(183, 184)",RGB:3546,0.5625,0.4532,0.6703,0.1857,0.2125,0.1644
+patient_organized,/Users/shorna/Projects/Quantum Plasma Net/q-plasmanet/data/raw/pcmmd/patient_organized,True,344,0,0,344,10,True,0,1800,3456,4000,4608,"(3456, 4608)",RGB:344,0.4184,0.4084,0.4023,0.364,0.3611,0.3455
+segmented,/Users/shorna/Projects/Quantum Plasma Net/q-plasmanet/data/raw/pcmmd/segmented,True,3546,1615,1931,0,2,True,0,39,891,33,897,"(183, 184)",RGB:3546,0.5625,0.4532,0.6703,0.1857,0.2125,0.1644

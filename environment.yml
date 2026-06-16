@@ -1,0 +1,27 @@
+name: q-plasmanet
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - statsmodels
+  - matplotlib
+  - pyyaml
+  - tqdm
+  - pillow
+  - joblib
+  - pip:
+      # torch/torchvision: install the CUDA build separately per your platform,
+      # e.g. pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+      # On Apple Silicon, the default wheel uses the MPS GPU.
+      - torch
+      - torchvision
+      # Single quantum framework: PennyLane (lightning.qubit + default.mixed). No Qiskit.
+      - pennylane
+      - pennylane-lightning
+      - wandb

@@ -1,0 +1,2 @@
+model,seed,n_patients,n_cells,cell_acc,cell_f1,cell_auc,patient_auc,patient_auc_ci_lo,patient_auc_ci_hi,patient_sens,patient_spec,lopo_acc,lopo_sens,lopo_spec,ratio_threshold,ratio_corr_pred_vs_true,leakage
+q_plasmanet,0,10,2026,0.9082,0.7584,0.9792,1.0,1.0,1.0,1.0,1.0,0.9,0.8,1.0,0.22,0.9865,none (classifier trained on segmentation subset; disjoint)

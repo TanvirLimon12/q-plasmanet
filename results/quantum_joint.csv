@@ -1,0 +1,2 @@
+model,seed,trainable_params,limit,epochs,acc,f1,auc,pr_auc,balanced_acc
+q_plasmanet_joint,0,395722,200,1,0.535,0.021052631578947368,0.681252509032517,0.6101919161227295,0.5053191489361702

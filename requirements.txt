@@ -1,0 +1,33 @@
+# Core DL — install CUDA build of torch for the backbone (quantum head stays CPU)
+torch
+torchvision
+
+# Quantum — single framework: PennyLane (training on lightning.qubit, noise on
+# default.mixed). No Qiskit dependency.
+# NOTE: on Python 3.9 (this workstation) PennyLane 0.38 needs autoray<0.7 — newer
+# autoray removed autoray.autoray.NumpyMimic and breaks the import. On Python 3.11
+# (environment.yml) the latest PennyLane + autoray work together; relax these pins.
+pennylane==0.38.0
+pennylane-lightning          # CPU lightning.qubit for speed
+autoray==0.6.12              # pinned for PennyLane 0.38 on py3.9
+
+# ML / numerics
+scikit-learn
+joblib                       # persist fitted PCA+scaler transforms (Phase 4-6)
+numpy
+pandas
+scipy
+statsmodels
+medmnist                     # external-validation datasets (src/eval/external_validation.py)
+
+# IO / config / viz
+matplotlib
+pyyaml
+tqdm
+pillow
+
+# Optional logging (CSV is the fallback)
+wandb
+
+# Dev / test
+pytest

@@ -1,0 +1,3 @@
+model,ece,brier
+cnn,0.0194,0.0559
+q_plasmanet,0.0251,0.0596

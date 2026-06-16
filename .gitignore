@@ -1,0 +1,31 @@
+# credentials
+apikey.json
+*.env
+.env
+
+# data + model artifacts (too large for git)
+data/
+splits/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.npy
+*.npz
+
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+venv/
+.venv/
+
+# run logs / raw dumps
+*.log
+results/**/*_raw.csv
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/
